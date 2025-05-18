@@ -1,0 +1,1 @@
+export { BackgroundWrapperByAnima } from "./BackgroundWrapperByAnima";
