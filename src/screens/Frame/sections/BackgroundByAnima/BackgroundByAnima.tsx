@@ -30,7 +30,7 @@ export const BackgroundByAnima = (): JSX.Element => {
         <div className="flex flex-col max-w-[690px] gap-6 md:gap-8 md:px-12 mt-40 md:mt-24">
           <div className="pt-1 pb-0 flex flex-col items-start">
             <h1 className="font-['Figtree',Helvetica] font-normal text-white text-4xl md:text-5xl mb-12 lg:text-[70px] leading-10 md:leading-[75px]">
-              YSB infotech empowers growth through learning and networking solutions that go far beyond ordinary.
+              VSB infotech empowers growth through learning and networking solutions that go far beyond ordinary.
             </h1>
           </div>
           

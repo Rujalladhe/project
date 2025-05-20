@@ -12,6 +12,7 @@ import { Separator } from "../../../../components/ui/separator";
 import Work from "../how-we-work/work";
 import Industries from "../../../industries/industries";
 import { LampDemo } from "../../lamp/lamp";
+import ContactForm from "../../../../components/contactform";
 
 export const BackgroundWrapperByAnima = (): JSX.Element => {
   // Data for the "How we work" section
@@ -535,6 +536,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
           </div>
         </section>
       </div>
+      <ContactForm/>
     </div>
   );
 };
