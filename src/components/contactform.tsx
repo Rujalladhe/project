@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from '../nav/nav';
 
 interface FormData {
   name: string;
@@ -63,7 +64,9 @@ const ContactUs: React.FC = () => {
   };
 
   return (
+    
     <div className="flex flex-col min-h-screen max-h-screen bg-black overflow-hidden">
+        <Navbar/>
       {/* Header/Navigation */}
       <header >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
