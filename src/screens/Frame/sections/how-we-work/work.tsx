@@ -115,7 +115,7 @@ export default () => {
             </span>
           </h2>
           <p className="text-neutral-400 text-center sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            At STX Next, we blend Agile flexibility with engineering discipline and
+            At YSB, we blend Agile flexibility with engineering discipline and
             clear communication throughout the development process.
           </p>
         </div>

@@ -320,7 +320,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
                 key={index}
                 className={
                   index === 1
-                    ? "bg-[url(/vsb.jpg)] bg-cover h-[422px]"
+                    ? "bg-[url(/team.jpg)] bg-cover h-[422px]"
                     : "bg-[#f4f4f4] h-[422px]"
                 }
               >
@@ -347,7 +347,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
                 key={index}
                 className={
                   index === 0
-                    ? "bg-[url(/bsb3.jpg)] bg-cover h-[428px]"
+                    ? "bg-[url(/team1.jpg)] bg-cover h-[428px]"
                     : "bg-[#f4f4f4] h-[428px]"
                 }
               >

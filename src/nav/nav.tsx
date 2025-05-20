@@ -56,11 +56,11 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <div className="w-[100px] md:w-[120px]">
-              <img
+             {/* <img
                 className="w-full h-6"
-                alt="Logo"
-                src="/component-1-29.svg"
-              />
+                alt=""
+                src="/"
+              />*/}
             </div>
           </div>
 
