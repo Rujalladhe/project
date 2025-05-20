@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface FormData {
@@ -21,7 +21,8 @@ const ContactUs: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -45,176 +46,212 @@ const ContactUs: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!validate()) return;
 
     setLoading(true);
 
-    try {
-      const response = await fetch('http://localhost:3001/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert(result.message);
-        setFormData({ name: '', email: '', message: '' });
-        setErrors({});
-      } else {
-        alert('Error: ' + result.error);
-      }
-    } catch {
-      alert('Failed to send message. Try again later.');
-    }
-
-    setLoading(false);
+    // Simulate API call
+    setTimeout(() => {
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+      setFormData({ name: '', email: '', message: '' });
+      setErrors({});
+      setLoading(false);
+    }, 1500);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="max-w-5xl w-full bg-white rounded-2xl shadow-2xl flex overflow-hidden"
-      >
-        {/* Left Side: Image */}
-        <div className="hidden md:block w-1/2">
-          <img
-            src="https://images.unsplash.com/photo-1516321310768-61f3d2b3b3db?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
-            alt="Contact Illustration"
-            className="h-full w-full object-cover"
-          />
+    <div className="flex flex-col min-h-screen max-h-screen bg-black overflow-hidden">
+      {/* Header/Navigation */}
+      <header >
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        
+        
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-grow grid md:grid-cols-2 overflow-hidden">
+        {/* Left Side: Background Image */}
+        <div className="relative hidden md:block">
+          <div className="absolute inset-0">
+            <img
+              src="/red1.jpg"
+              alt="Contact Background"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          </div>
         </div>
 
-        {/* Right Side: Form */}
-        <div className="w-full md:w-1/2 p-8 md:p-12">
-          <motion.h1
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+        {/* Right Side: Contact Form */}
+        <div className="flex items-center justify-center p-4 md:p-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md"
           >
-            Get in Touch
-          </motion.h1>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-3xl md:text-4xl font-bold text-white mb-2"
             >
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                disabled={loading}
-                className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 ease-in-out"
-                placeholder="Your Name"
-              />
-              <AnimatePresence>
-                {errors.name && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="mt-1 text-sm text-red-500"
-                  >
-                    {errors.name}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              Contact Us
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-gray-400 mb-8"
+            >
+              Send us a message and we will get back to you as soon as possible.
+            </motion.p>
+            
+            <AnimatePresence>
+              {submitted && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="mb-6 p-4 rounded-lg bg-green-900 text-green-200"
+                >
+                  Your message has been sent successfully!
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <label className="block text-sm font-medium text-gray-300">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="mt-1 w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white transition duration-300 ease-in-out"
+                  placeholder="Your Name"
+                />
+                <AnimatePresence>
+                  {errors.name && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mt-1 text-sm text-red-400"
+                    >
+                      {errors.name}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={loading}
-                className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 ease-in-out"
-                placeholder="Your Email"
-              />
-              <AnimatePresence>
-                {errors.email && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="mt-1 text-sm text-red-500"
-                  >
-                    {errors.email}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <label className="block text-sm font-medium text-gray-300">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="mt-1 w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white transition duration-300 ease-in-out"
+                  placeholder="Your Email"
+                />
+                <AnimatePresence>
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mt-1 text-sm text-red-400"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                Message
-              </label>
-              <textarea
-                name="message"
-                id="message"
-                value={formData.message}
-                onChange={handleChange}
-                disabled={loading}
-                rows={5}
-                className="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 ease-in-out resize-none"
-                placeholder="Your Message"
-              />
-              <AnimatePresence>
-                {errors.message && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="mt-1 text-sm text-red-500"
-                  >
-                    {errors.message}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                <label className="block text-sm font-medium text-gray-300">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  disabled={loading}
+                  rows={5}
+                  className="mt-1 w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white transition duration-300 ease-in-out resize-none"
+                  placeholder="Your Message"
+                />
+                <AnimatePresence>
+                  {errors.message && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mt-1 text-sm text-red-400"
+                    >
+                      {errors.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
 
-            <motion.button
-              type="submit"
-              disabled={loading}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`w-full py-3 px-6 rounded-lg text-white font-semibold ${
-                loading ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
-              } transition duration-300 ease-in-out`}
+              <motion.button
+                onClick={handleSubmit}
+                disabled={loading}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-3 px-6 rounded-lg text-white font-medium ${
+                  loading ? 'bg-blue-800 cursor-not-allowed' : 'bg-blue-700 hover:bg-blue-600'
+                } transition duration-300 ease-in-out shadow-lg`}
+              >
+                {loading ? 'Sending...' : 'Send Message'}
+              </motion.button>
+            </div>
+           
+            <div className="mt-8 flex items-center">
+              <div className="flex-1 border-t border-gray-800"></div>
+              <span className="px-4 text-sm text-gray-500"></span>
+              <div className="flex-1 border-t border-gray-800"></div>
+            </div>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="mt-8 text-center text-xs text-gray-500"
             >
-              {loading ? 'Sending...' : 'Send Message'}
-            </motion.button>
-          </form>
+              By continuing, you agree to our Terms of Service and Privacy Policy
+            </motion.p>
+          </motion.div>
         </div>
-      </motion.div>
+      </main>
     </div>
   );
 };
