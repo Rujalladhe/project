@@ -19,7 +19,7 @@ export const BackgroundByAnima = (): JSX.Element => {
     <div className="relative w-full h-[1034px]">
       {/* Background image with no blur */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 w-full h-full bg-[url(purple3.jpg)] bg-cover bg-center" />
+        <div className="absolute inset-0 w-full h-full bg-[url(/purple3.jpg)] bg-cover bg-center" />
       </div>
       
       {/* Logo carousel section */}
