@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import { ArrowRight, Award, Clock, Globe, Users } from "lucide-react"
 import { motion, useInView, useAnimation } from "framer-motion"
+import Navbar from "../nav/nav"
 
 // Animation variants
 const fadeIn = {
@@ -36,8 +37,8 @@ const AnimatedSection = ({ children, className }: { children: React.ReactNode; c
   )
 }
 
-const Button = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <button className={`inline-flex items-center justify-center ${className}`}>
+const Button = ({ children, className, onClick }: { children: React.ReactNode; className?: string; onClick?: () => void }) => (
+  <button className={`inline-flex items-center justify-center ${className}`} onClick={onClick}>
     {children}
   </button>
 )
@@ -45,20 +46,21 @@ const Button = ({ children, className }: { children: React.ReactNode; className?
 const AboutUs = () => {
   return (
     <div className="min-h-screen bg-black text-white">
+      <Navbar/>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <img
-            src="/api/placeholder/1920/1080"
+            src="4.jpeg"
             alt="Background texture"
-            className="object-cover w-full h-full"
+            className="object-cover w-full "
           />
         </div>
         <div className="container px-4 mx-auto z-10">
           <AnimatedSection className="text-center max-w-4xl mx-auto">
             <motion.h1
               variants={fadeIn}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-1 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
             >
               About Our Vision
             </motion.h1>
@@ -67,7 +69,7 @@ const AboutUs = () => {
             </motion.p>
             <motion.div variants={fadeIn}>
               <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-lg">
-                Our Work <ArrowRight className="ml-2 h-5 w-5" />
+                Our Work 
               </Button>
             </motion.div>
           </AnimatedSection>
@@ -90,15 +92,9 @@ const AboutUs = () => {
             <motion.div variants={fadeIn} className="order-2 md:order-1">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
               <p className="text-gray-300 mb-6">
-                Founded in 2015, our journey began with a simple mission: to bridge the gap between technology and human
-                experience. What started as a small team of passionate designers and developers has grown into a global
-                creative force.
+              The Graphology Research Institute (TGRI), based in Mumbai, is a specialized organization dedicated to the study and application of graphology—the science of handwriting analysis. TGRI offers a wide range of training and certification programs aimed at helping individuals understand personality traits, emotional patterns, and behavioral tendencies through handwriting. The institute provides personal consultations, educational workshops, and corporate training sessions that apply graphology in areas such as recruitment, relationship counseling, career guidance, and self-development. With a strong focus on psychological insights and practical applications, TGRI empowers individuals and professionals alike to explore human behavior in a unique and impactful way.
               </p>
-              <p className="text-gray-300 mb-6">
-                We believe that great design is not just about aesthetics, but about solving real problems for real
-                people. Our approach combines strategic thinking, creative innovation, and technical excellence to
-                deliver solutions that make a difference.
-              </p>
+             
               <div className="flex gap-4 mt-8">
                 <div className="text-center">
                   <p className="text-4xl font-bold text-white">8+</p>
@@ -117,7 +113,7 @@ const AboutUs = () => {
             <motion.div variants={fadeIn} className="order-1 md:order-2 relative">
               <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
                 <img
-                  src="/api/placeholder/600/800"
+                  src="bsb3.jpg"
                   alt="Our team at work"
                   className="object-cover w-full h-full"
                 />
@@ -180,54 +176,7 @@ const AboutUs = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 md:py-32">
-        <div className="container px-4 mx-auto">
-          <AnimatedSection>
-            <motion.div variants={fadeIn} className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Meet Our Team</h2>
-              <p className="text-gray-300">
-                Talented individuals united by a passion for creating exceptional digital experiences.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8"
-            >
-              {[
-                { name: "Alex Morgan", role: "Founder & CEO", image: "/api/placeholder/400/400" },
-                { name: "Jamie Chen", role: "Creative Director", image: "/api/placeholder/400/400" },
-                { name: "Taylor Reed", role: "Lead Developer", image: "/api/placeholder/400/400" },
-                { name: "Jordan Smith", role: "UX Designer", image: "/api/placeholder/400/400" },
-                { name: "Casey Wilson", role: "Project Manager", image: "/api/placeholder/400/400" },
-                { name: "Riley Johnson", role: "Marketing Lead", image: "/api/placeholder/400/400" },
-                { name: "Quinn Thomas", role: "Frontend Developer", image: "/api/placeholder/400/400" },
-                { name: "Avery Williams", role: "Content Strategist", image: "/api/placeholder/400/400" },
-              ].map((member, index) => (
-                <motion.div key={index} variants={fadeIn} className="group">
-                  <div className="relative overflow-hidden rounded-xl mb-4 aspect-square">
-                    <img
-                      src={member.image || "/api/placeholder/400/400"}
-                      alt={member.name}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4">
-                        <p className="text-white font-bold">{member.name}</p>
-                        <p className="text-gray-300 text-sm">{member.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="md:hidden">
-                    <p className="font-bold">{member.name}</p>
-                    <p className="text-gray-400 text-sm">{member.role}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatedSection>
-        </div>
-      </section>
+     
 
       {/* Timeline Section */}
       <section className="py-20 md:py-32 bg-gradient-to-b from-gray-900 to-black">
@@ -307,9 +256,9 @@ const AboutUs = () => {
                 Let's create something extraordinary together. Reach out to discuss how we can help bring your vision to
                 life.
               </p>
-              <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-lg">
+                <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 text-lg" onClick={() => window.location.href = '/contact'}>
                 Get in Touch <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+                </Button>
             </motion.div>
           </AnimatedSection>
         </div>
