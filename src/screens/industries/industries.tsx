@@ -119,7 +119,9 @@ const Industries: React.FC = () => {
   if (!activeIndustry) return null;
 
   return (
-    <section className="mt-8 sm:mt-20 rounded-[20px] bg-gradient-to-b from-black to-black bg-[radial-gradient(50%_50%_at_100%_120%,rgba(0,178,169,0.6)_0%,rgba(0,0,0,0)_38%),radial-gradient(50%_50%_at_-20%_50%,rgba(56,162,191,0.6)_0%,rgba(0,0,0,0)_39%)]">
+    <section className="mt-8 sm:mt-20 rounded-[20px] bg-black bg-opacity-80" style={{
+      background: 'radial-gradient(50% 50% at 100% 120%, rgba(0,178,169,0.6) 0%, rgba(0,0,0,0) 38%), radial-gradient(50% 50% at -20% 50%, rgba(56,162,191,0.6) 0%, rgba(0,0,0,0) 39%)'
+    }}>
       <div className="p-4 sm:p-8">
         <h2 className="text-3xl sm:text-5xl text-white font-['Figtree',Helvetica] leading-tight sm:leading-[58px] mb-6 sm:mb-8">
           Industries we serve

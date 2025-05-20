@@ -181,7 +181,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
       description:
         "For a growing startup, we created a Digital Visiting Card solution with contactless sharing via QR codes and NFC. This helped their sales team increase lead generation by 25%.",
       category: "digital identity",
-      backgroundImage: "./ide.jpg",
+      backgroundImage: "./cardd.jpg",
     },
     
   ];
@@ -231,10 +231,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
     <div className="relative w-full [background:linear-gradient(180deg,rgba(0,0,0,1)_56%,rgba(244,244,244,1)_100%)]">
       <div className="relative mx-auto max-w-7xl">
         {/* Gradient backgrounds */}
-        <div className="absolute w-full  h-[1200px] top-[1833px] left-0 [background:radial-gradient(50%_50%_at_50%_50%,rgba(0,178,169,0.4)_0%,rgba(0,0,0,0)_70%)] blur-[100px]" />
-          
-        <div className="absolute w-[960px] h-[600px] top-[1353px] left-0 [background:radial-gradient(50%_50%_at_50%_50%,rgba(56,162,191,0.4)_0%,rgba(0,0,0,0)_70%)] blur-[100px]" />
-         
+      
           {/* Case studies section */}
      <section className="bg-white p-4 sm:p-8 mt-8 sm:mt-16 rounded-[20px]">
   <h2 className="text-3xl sm:text-5xl text-[#232323] text-center [font-family:'Figtree',Helvetica] leading-tight sm:leading-[58px] mb-6 sm:mb-12">
@@ -268,7 +265,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
             </div>
             
             <Button className="bg-black text-white rounded-[40px] px-5 sm:px-7 py-3 sm:py-4 text-xs sm:text-sm mt-6 sm:mt-8 w-fit">
-              SEE FULL CASE STUDY
+              Know more
               <ChevronRightIcon className="h-2 w-2 sm:h-3 sm:w-3 ml-1 sm:ml-2" />
             </Button>
           </div>
@@ -293,106 +290,16 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
      
 
         {/* Web app development section */}
-        <section className="relative bg-white rounded-[20px] p-8 mt-20">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="w-full md:w-1/2">
-              <div className="h-[565px] rounded-3xl bg-[url(/main.jpeg)] bg-cover bg-center" />
-            </div>
-
-            <div className="w-full md:w-1/2 space-y-6">
-              <div className="flex items-center">
-                <img
-                  className="w-12 h-12"
-                  alt="Component"
-                  src="/component-1-56.svg"
-                />
-              </div>
-
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="text-[#232323] text-2xl [font-family:'Inter',Helvetica] leading-[34px]">
-                  "Building modern learning and
-                </span>
-                <span className="px-3 py-0.5 rounded-full border border-[#00b2a9] text-[#232323] text-2xl [font-family:'Inter',Helvetica] leading-[34px]">
-                networking solutions
-                </span>
-                <span className="text-[#232323] text-2xl [font-family:'Inter',Helvetica] leading-[34px]">
-                  in 2025 can be
-                </span>
-                <span className="px-3 py-0.5 rounded-full border border-[#00b2a9] text-[#232323] text-2xl [font-family:'Inter',Helvetica] leading-[34px]">
-                  tough
-                </span>
-                <span className="text-[#232323] text-2xl [font-family:'Inter',Helvetica] leading-[34px]">
-                  .
-                </span>
-              </div>
-
-              <p className="text-[#232323] text-base [font-family:'Inter',Helvetica] leading-[22px]">
-               Whether you’re managing large-scale training programs, integrating AI into education, or transitioning to digital networking, outdated tools and complex requirements can lead to inefficiencies.
-                <br />
-               At our compnay, we create scalable LMS platforms and Digital Visiting Cards that integrate seamlessly into your workflows, ensuring flexibility and growth."
-              </p>
-
-           
-
-              <p className="text-[#232323] text-base [font-family:'Inter',Helvetica] leading-[22px]">
-               we excel at creating scalable and maintainable
-                solutions, smoothly integrating into
-                <br />
-                your existing setup. We design them to handle any complex needs
-                and grow with you.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-8 mt-16">
-            <div className="w-full md:w-1/2 space-y-10">
-              <h2 className="text-5xl text-[#232323] [font-family:'Figtree',Helvetica] leading-[58px]">
-                Tell us about your learning
-                <br />
-               and networking needs
-              </h2>
-
-              <p className="text-[#232323] text-xl [font-family:'Inter',Helvetica] leading-7">
-                "Our team can deliver tailored solutions in under 2 weeks
-                <br />
-               ensuring secure, scalable, and user-friendly platforms.
-              </p>
-
-              <Button className="bg-[#00b2a9] text-white rounded-[40px] px-7 py-4 text-sm">
-                LET'S TALK
-                <ChevronRightIcon className="h-3 w-3 ml-2" />
-              </Button>
-            </div>
-
-            <div className="w-full md:w-1/2">
-              <Card className="bg-[#f2f2f2] border-[#d1d1d1] rounded-3xl h-full">
-                <CardContent className="p-0">
-                  <Accordion type="single" collapsible className="w-full">
-                    {webAppServices.map((service, index) => (
-                      <AccordionItem
-                        key={index}
-                        value={`item-${index}`}
-                        className="border-b border-[#d1d1d1]"
-                      >
-                        <AccordionTrigger className="px-7 py-8 text-[#232323] text-2xl [font-family:'Inter',Helvetica] leading-[34px] hover:no-underline">
-                          {service}
-                        </AccordionTrigger>
-                       
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
+       
         {/* Tech stack section */}
   
    
 
         {/* Why STX Next section */}
-        <Industries/>
+        <div className="-z-0">
+           <Industries/>
+        </div>
+       
      
         <section className="bg-white p-8 mt-20 rounded-[20px]">
           <h2 className="text-5xl text-[#232323] text-center [font-family:'Figtree',Helvetica] leading-[58px] mb-4">
