@@ -39,7 +39,7 @@ export const BackgroundByAnima = (): JSX.Element => {
             platforms and Custom Digital Visiting Cards tailored to your needs—scalable,engaging, and modern.
           </p>
           
-          <button className="inline-flex items-center justify-center gap-3 px-6 md:px-[29px] py-5 md:py-[10px] rounded-[40px] bg-[#00b2a9] border border-solid text-white text-sm font-['Inter',Helvetica] w-fit">
+          <button className="inline-flex items-center justify-center gap-3 px-6 md:px-[29px] py-5 md:py-[10px] rounded-[40px] bg-[#00b2a9] border border-solid text-white text-sm font-['Inter',Helvetica] w-fit" onClick={() => window.location.href = '/contact'}>
             LET&apos;S TALK
             <img
               className="w-[13px] h-3"

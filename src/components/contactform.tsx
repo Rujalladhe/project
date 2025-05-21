@@ -101,7 +101,7 @@ const ContactUs: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl md:text-4xl font-bold text-white mb-2"
+              className="hidden md:block text-3xl md:text-4xl font-bold text-white mb-2"
             >
               Contact Us
             </motion.h1>
@@ -110,7 +110,7 @@ const ContactUs: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-gray-400 mb-8"
+              className="text-gray-400 mb-8 md:mb-8 mt-8 md:mt-0"
             >
               Send us a message and we will get back to you as soon as possible.
             </motion.p>

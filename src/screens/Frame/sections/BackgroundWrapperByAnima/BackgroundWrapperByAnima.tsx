@@ -265,7 +265,10 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
               </p>
             </div>
             
-            <Button className="bg-black text-white rounded-[40px] px-5 sm:px-7 py-3 sm:py-4 text-xs sm:text-sm mt-6 sm:mt-8 w-fit">
+            <Button 
+              className="bg-black text-white rounded-[40px] px-5 sm:px-7 py-3 sm:py-4 text-xs sm:text-sm mt-6 sm:mt-8 w-fit"
+              onClick={() => window.location.href = '/products'}
+            >
               Know more
               <ChevronRightIcon className="h-2 w-2 sm:h-3 sm:w-3 ml-1 sm:ml-2" />
             </Button>
@@ -438,7 +441,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
                ensuring secure, scalable, and user-friendly platforms.
               </p>
 
-              <Button className="bg-[#00b2a9] text-white rounded-[40px] px-7 py-4 text-sm">
+              <Button className="bg-[#00b2a9] text-white rounded-[40px] px-7 py-4 text-sm"  onClick={() => window.location.href = '/contact'}>
                 LET'S TALK
                 <ChevronRightIcon className="h-3 w-3 ml-2" />
               </Button>
@@ -536,7 +539,7 @@ export const BackgroundWrapperByAnima = (): JSX.Element => {
           </div>
         </section>
       </div>
-      <ContactForm/>
+    
     </div>
   );
 };

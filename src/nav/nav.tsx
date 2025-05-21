@@ -5,15 +5,16 @@ import { ChevronDownIcon, ChevronRightIcon, MenuIcon, XIcon } from 'lucide-react
 interface ButtonProps {
   className: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
-
-const Button = ({ className, children }: ButtonProps) => {
+const Button = ({ className, children, onClick }: ButtonProps) => {
   return (
-    <button className={`flex items-center justify-center ${className}`}>
+    <button className={`flex items-center justify-center ${className}`} onClick={onClick}>
       {children}
     </button>
   );
 };
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,11 +22,8 @@ export default function Navbar() {
 
   // Menu items data
   const menuItems = [
-    { label: "Services", hasDropdown: true },
-    { label: "Industries", hasDropdown: true },
-    { label: "Case Studies", hasDropdown: false },
-    { label: "Insights", hasDropdown: true },
-    { label: "About", hasDropdown: true }
+    
+  {}
   ];
 
   // Handle window resize to determine mobile view
@@ -66,32 +64,21 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center">
-            <nav className="flex items-center mr-6">
-              {menuItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative h-[72px] px-2.5 flex items-center cursor-pointer"
-                >
-                  <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica] tracking-[0] whitespace-nowrap">
-                    {item.label}
-                  </div>
-
-                  {item.hasDropdown && (
-                    <ChevronDownIcon className="w-[13px] h-[7px] ml-2 text-white" />
-                  )}
-                </div>
-              ))}
-            </nav>
+          
             
             {/* Careers Link */}
             <div className="h-[72px] flex items-center px-2.5 mr-4">
-              <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica] tracking-[0] whitespace-nowrap cursor-pointer">
-                Careers
+              <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica] tracking-[0] whitespace-nowrap cursor-pointer"  onClick={() => window.location.href = '/about'}>
+                AboutUs
               </div>
             </div>
-
+              <div className="h-[72px] flex items-center px-2.5 mr-4">
+              <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica] tracking-[0] whitespace-nowrap cursor-pointer"  onClick={() => window.location.href = '/products'}>
+                products
+              </div>
+            </div>
             {/* Let's Talk Button */}
-            <Button className="w-[150px] h-[42px] rounded-[20px] bg-[#00b2a9] border border-solid text-white hover:bg-[#00a29a] flex items-center justify-center">
+            <Button className="w-[150px] h-[42px] rounded-[20px] bg-[#00b2a9] border border-solid text-white hover:bg-[#00a29a] flex items-center justify-center" onClick={() => window.location.href = '/contact'}>
               <span className="font-normal text-sm leading-6 font-['Inter',Helvetica]">
                 LET&#39;S TALK
               </span>
@@ -119,33 +106,25 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden bg-[#1e1e1e] py-4 border-t border-gray-700">
             <nav className="flex flex-col">
-              {menuItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="py-3 px-4 flex items-center justify-between cursor-pointer hover:bg-[#2a2a2a]"
-                >
-                  <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica]">
-                    {item.label}
-                  </div>
-                  
-                  {item.hasDropdown && (
-                    <ChevronDownIcon className="w-[13px] h-[7px] text-white" />
-                  )}
-                </div>
-              ))}
+              
               
               {/* Careers Link in Mobile Menu */}
               <div className="py-3 px-4 cursor-pointer hover:bg-[#2a2a2a]">
-                <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica]">
-                  Careers
+                <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica]"  onClick={() => window.location.href = '/about'}>
+                  AboutUs
+                </div>
+              </div>
+                <div className="py-3 px-4 cursor-pointer hover:bg-[#2a2a2a]">
+                <div className="font-normal text-white text-sm leading-[16.8px] font-['Inter',Helvetica]"  onClick={() => window.location.href = '/products'}>
+                  products
                 </div>
               </div>
               
               {/* Let's Talk Button in Mobile Menu */}
               <div className="mx-4 mt-4">
-                <Button className="w-full h-[42px] rounded-[20px] bg-[#00b2a9] border border-solid text-white hover:bg-[#00a29a] flex items-center justify-center">
+                <Button className="w-full h-[42px] rounded-[20px] bg-[#00b2a9] border border-solid text-white hover:bg-[#00a29a] flex items-center justify-center" onClick={() => window.location.href = '/contact'}>
                   <span className="font-normal text-sm leading-6 font-['Inter',Helvetica]">
-                    LET&#39;S TALK
+                  LET&#39;S TALK
                   </span>
                   <ChevronRightIcon className="w-[13px] h-3 ml-2" />
                 </Button>
