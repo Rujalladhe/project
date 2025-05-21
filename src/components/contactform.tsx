@@ -24,6 +24,7 @@ const ContactUs: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -47,31 +48,47 @@ const ContactUs: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!validate()) return;
 
     setLoading(true);
+    setSubmitError('');
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
       setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 5000);
       setFormData({ name: '', email: '', message: '' });
       setErrors({});
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Failed to send message');
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (
-    
     <div className="flex flex-col min-h-screen max-h-screen bg-black overflow-hidden">
-        <Navbar/>
+      <Navbar/>
       {/* Header/Navigation */}
-      <header >
+      <header>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        
-        
         </div>
       </header>
 
@@ -101,7 +118,7 @@ const ContactUs: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="hidden md:block text-3xl md:text-4xl font-bold text-white mb-2"
+              className="text-3xl md:text-4xl font-bold text-white mb-2"
             >
               Contact Us
             </motion.h1>
@@ -110,7 +127,7 @@ const ContactUs: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-gray-400 mb-8 md:mb-8 mt-8 md:mt-0"
+              className="text-gray-400 mb-8"
             >
               Send us a message and we will get back to you as soon as possible.
             </motion.p>
@@ -124,6 +141,16 @@ const ContactUs: React.FC = () => {
                   className="mb-6 p-4 rounded-lg bg-green-900 text-green-200"
                 >
                   Your message has been sent successfully!
+                </motion.div>
+              )}
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="mb-6 p-4 rounded-lg bg-red-900 text-red-200"
+                >
+                  {submitError}
                 </motion.div>
               )}
             </AnimatePresence>
